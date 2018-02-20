@@ -1,0 +1,141 @@
+#----------------------------------------------------------------------
+Programming Assignment 01
+
+#----------------------------------------------------------------------
+Purpose:
+
+  * Demonstrate working programming environment(s).
+  * Demonstrate elementary understanding of Regular Expressions and
+    how to use them in a program.
+
+#----------------------------------------------------------------------
+Background:
+
+  * The input file will have multiple proposed tokens on each line.
+  * The proposed tokens will be separated by whitespace, which is to
+    be ignored.
+
+  * Your program will consider successive tokens from the input file
+    and classify them as 'ID', 'FP', 'INT', or 'does not match'.
+
+  * An ID starts with a letter or underscore, followed by any number
+    of letters, digits, or underscores.
+  * An INT is any number (greater than 0) of decimal digits.
+  * An FP is any number (greater than 0) of decimal digits, followed
+    by a decimal point, followed by any number (greater than 0) of
+    decimal digits.  (This definition of FP is simpler than what we
+    discussed in class.  This definition requires digit both before
+    and after the decimal point.)
+
+#----------------------------------------------------------------------
+Examples:
+
+  _a00q is a legal ID.
+  0_a_f is not a legal ID (it starts with a digit).
+  0_a_f is not a legal INT (it has letters and underscores).
+  0_a_f is not a legal FP (it has letters and underscores, it does
+          not have a decimal point).
+  0_a_f should be identified as 'does not match'.
+  456   is a legal INT.
+  123.  is not a legal FP (it has no digits after the decimal point).
+  .123  is not a legal FP (it has on digits before the decimal point).
+  456.654 is a legal FP.
+
+#----------------------------------------------------------------------
+Tasks:
+
+  1. Download HMWK_01.zip from Blackboard.
+  2. Unzip the file somewhere convenient.
+  3. Change 'dalioba' in the name of the directory to your NetID.
+     (Your NetID is three letters followed by four or five digits.
+      The directory name will now be something like 'hmwk_01_abc1234'.)
+  4. Look in that directory.
+  5. Pick a language in which to write your code, C#, Java, or Python.
+  6. Change the header lines in the skeleton file hmwk_01.cs / .java / .py.
+     (Put your name on line 1, your ID number on line 2, and the date on
+      line 3.)
+  7. Run the skeleton file you just changed with the provided
+     'inputdata.text' as the input file.
+  8. Observe the following output (it will be the same no matter which
+     language you picked):
+
+processing tokens from inputdata.txt ...
+>12345< is the proposed token.
+>67890< is the proposed token.
+>afghe< is the proposed token.
+>abcde< is the proposed token.
+>23456< is the proposed token.
+>0abcd< is the proposed token.
+>34567< is the proposed token.
+>__fred01< is the proposed token.
+>45678< is the proposed token.
+>123.456< is the proposed token.
+>12345a< is the proposed token.
+>123.< is the proposed token.
+>.456< is the proposed token.
+>ab00cd< is the proposed token.
+>00ab00< is the proposed token.
+
+  9. Now, change the contents of processToken() function to use the
+     regular expression support of the language you selected so that
+     the following output is generated for the 'inputdata.txt' test
+     cases.
+
+processing tokens from inputdata.txt ...
+>12345< matches INT
+>67890< matches INT
+>afghe< matches ID
+>abcde< matches ID
+>23456< matches INT
+>0abcd< does not match.
+>34567< matches INT
+>__fred01< matches ID
+>45678< matches INT
+>123.456< matches FP
+>12345a< does not match.
+>123.< does not match.
+>.456< does not match.
+>ab00cd< matches ID
+>00ab00< does not match.
+
+#----------------------------------------------------------------------
+Submission:
+
+Make a zipfile of your 'hmwk_01_xxxnnnnn' directory and submit it on
+Blackboard as your results for this assignment.  Even if you are only
+submitting a single document, you still need to put it in a directory
+and zip that directory.
+
+Your submission will be run on another file of test data.  That file
+will have 10 possible tokens and your solution will score a point for
+each token that generates the correct message.
+
+#----------------------------------------------------------------------
+Bonus Points:
+
+After you are confident that you have correctly updated the code in
+one of the skeleton files, do another language.  So if you did Java
+first, try doing C# or Python.  You'll get 1/2 point for each of the
+10 possible tokens your second language attempt properly converts.
+
+If you finish a second language, do the third language.  You'll get
+an additional 1/2 point for each of the 10 possible tokens your third
+language attempt properly converts.
+
+Therefore, the maximum possible score for this homework assignment
+is 20 points (10 + 5 + 5) out of 10.
+
+#----------------------------------------------------------------------
+Hints:
+  1. You might need some lines of static code lines aside from
+     changing the contents of processToken().  (This will depend on
+     how you decide to do the regular expressions.)
+
+  2. This program is not complex.  The processToken() routine in the
+     C# proposed solution is 15 lines of code, including some static
+     data.  For Java, it's 12 lines of code.  For Python, it's 16
+     lines of code, including some static data.  If you find yourself
+     writing lots more code than this, you're probably going down the
+     wrong path.
+
+#----------------------------------------------------------------------
