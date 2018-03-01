@@ -10,56 +10,17 @@ public class hmwk_01
 {
     static public void processToken(string token)
     {
-        int numInt, notInt = 0, notID = 0, notFP = 0; float numFloat;
-        Boolean isInt = int.TryParse(token, out numInt);
-        if (isInt)
-        {
-            Console.WriteLine(">" + token + "< matchs INT");
-        }
-        else
-        {
-            notInt++;
-        }
-
-        if (token.Contains(".") && !token[0].Equals('.')
-           && !token[token.Length - 1].Equals('.'))
-        {
-            Boolean isFP = float.TryParse(token, out numFloat);
-            if (isFP)
-            {
-                Console.WriteLine(">" + token + "< matchs FP");
-            }
-            else
-            {
-                notFP++;
-            }
-        }
-        else
-        {
-            notFP++;
-        }
-        if (char.IsLetter(token[0]) || token[0].Equals('_'))
-        {
-            for (int i = 1; i < token.Length; i++)
-            {
-                if (!char.IsLetter(token[i]) && !char.IsDigit(token[i])
-                    && !token[0].Equals('_'))
-                {
-                    notID++; break;
-                }
-                if (i == token.Length - 1)
-                {
-                    Console.WriteLine(">" + token + "< matchs ID");
-                }
-            }
-        }
-        else
-        {
-            notID++;
-        }
-        if (notID != 0 && notFP != 0 && notInt != 0)
-        {
-            Console.WriteLine(">" + token + "<  Does Not Match");
+        Regex isInt = new Regex(@"^[0-9][0-9]*$");
+        Regex isFP = new Regex(@"^[0-9][0-9]*[.][0-9]+$");
+        Regex isID = new Regex(@"^[A-Za-z_][a-zA-Z0-9_]+$");
+        if (isInt.Match(token).Success){
+            Console.WriteLine(">" + token + "< matches INT");
+        }else if (isFP.Match(token).Success){
+            Console.WriteLine(">" + token + "< matches FP");
+        }else if (isID.Match(token).Success){
+            Console.WriteLine(">" + token + "< matches ID");
+        }else{
+            Console.WriteLine(">" + token + "<  does not match");
         }
     }
 
@@ -77,3 +38,5 @@ public class hmwk_01
         }
     }
 }
+
+

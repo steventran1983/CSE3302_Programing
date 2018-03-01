@@ -2,48 +2,22 @@
 // 1001-233-804
 // 2018-02-18
 
+package hmwk_01;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.util.Arrays;
 
-public class hmwk_01{
+public class hmwk_01 {
 
     public static void processToken(String token) {
-        int notInt = 0, notID = 0, notFP = 0;
-        try {
-            int temp_digit = Integer.parseInt(token);
+
+        if (token.matches("^[0-9][0-9]*$")) {
             System.out.println(">" + token + "< matches INT.");
-        } catch (NumberFormatException e) {
-            notInt++;
-        }
-
-        if ((token.contains(".")) && (token.charAt(0) != '.')
-                && (token.charAt(token.length() - 1) != '.')) {
-            try {
-                Float.parseFloat(token);
-                System.out.println(">" + token + "< matches FD.");
-            } catch (NumberFormatException e) {
-                notFP++;
-            }
+        } else if (token.matches("^[0-9][0-9]*[.][0-9]+$")) {
+            System.out.println(">" + token + "< matches FP.");
+        } else if (token.matches("^[A-Za-z_][a-zA-Z0-9_]+$")) {
+            System.out.println(">" + token + "< matches ID.");
         } else {
-            notFP++;
-        }
-
-        if ((Character.isLetter(token.charAt(0))) || (token.charAt(0) == '_')) {
-            for (int i = 0; i < token.length(); i++) {
-                char tempChar = token.charAt(i);
-                if ((!Character.isLetter(tempChar))
-                        && (!Character.isDigit(tempChar)) && tempChar != '_') {
-                    notID++;
-                    break;
-                } else if (i == token.length() - 1) {
-                    System.out.println(">" + token + "< matches ID.");
-                }
-            }
-        } else {
-            notID++;
-        }
-        if (notFP != 0 && notID != 0 && notInt != 0) {
             System.out.println(">" + token + "< does not match.");
         }
     }
