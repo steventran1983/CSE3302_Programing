@@ -1,0 +1,188 @@
+#----------------------------------------------------------------------
+Programming Assignment 02
+
+#----------------------------------------------------------------------
+Purpose:
+
+  * Demonstrate working programming environment(s).
+  * Build on Programming Assignment 01.
+  * Demonstrate better understanding of Regular Expressions and
+    how to use them in a program.
+
+#----------------------------------------------------------------------
+Background:
+
+  * The input file will have multiple proposed tokens on each line.
+
+  * The proposed tokens will be separated by whitespace, which is to
+    be ignored.
+
+  * Your program will consider successive tokens from the input file
+    and classify them as 'ID', 'FP', 'EFP', 'HEXINT', 'INT', or
+    'does not match'.
+
+  * An ID begins with an underscore, a lowercase letter from “a”
+    to “m”, or an uppercase letter from “N” to “Z”.  After the first
+    character, an ID may have any number of underscores, decimal
+    digits, lowercase letters “n” to “z”, or uppercase letters
+    from “A” to “M”.
+
+  * An FP is any number of decimal digits, followed by a decimal
+    point “.”, followed by any number of decimal digits.  There must
+    be at least one decimal digit before the decimal point and at
+    least one decimal digit after the decimal point.
+
+  * An EFP is any number of decimal digits, followed by a decimal
+    point “.”, followed by any number of decimal digits, followed
+    by “e” or “E”, followed by “+” or “-”, followed by at least one
+    decimal digit.
+
+    Decimal digits need to be on only one side of the decimal point
+    but having decimal digits on both sides of the decimal point is
+    permitted.
+
+    The exponent (“e” or “E, “+” or “-”, at least one decimal digit)
+    may be omitted if the decimal point is given.  The sign (“+” or
+    “-”) in the exponent is always optional.
+
+    The decimal point may be omitted if the exponent is given.
+
+  * If a proposed token is both an FP and an EFP, it should be
+    reported as being an FP.
+
+  * A HEXINT begins with “0x” or “0X” followed by any number of
+    hexadecimal digits.  There must be at least one hexadecimal
+    digit after the “0x” or “0X”.  (The hexadecimal digits are the
+    decimal digits plus “a” through “f” or “A” through “F”.)
+
+  * An INT begins with “0d” or “0D” followed by any number of
+    decimal digits.  There must be at least one decimal digit after
+    the “0d” or “0D”.
+
+#----------------------------------------------------------------------
+Examples:
+
+  Legal IDs       : _       bA_99   Z_q_3     aBCxyz  XyzABC
+  Illegal IDs     : ABCD    abcd    0123      _+Q     9_A
+  Legal INTs      : 0d1     0D0     0D123456  0d0000  0D999
+  Illegal INTs    : 123     0       0x1       0dABC   -0D1
+  Legal HEXINTs   : 0xdead  0XBeEf  0xABC     0x0     0X999
+  Illegal HEXINTs : 0xDEFG  0X      +0x1      0dABC   0XXX
+  Legal FPs       : 0.0     00.00   1.2345    1.000   12345.9
+  Illegal FPs     : 0.      .09     12.abc    9ab.12  +5.6
+  Legal EFPs      : 0.      2.0     1e1       .0e-4   3.14E+0
+  Illegal EFPs    : 9       E9      .e        9ab.12  +5.6
+
+#----------------------------------------------------------------------
+Tasks:
+
+  1. Download HMWK_02.zip from Blackboard.
+  2. Unzip the file somewhere convenient.
+  3. Change 'dalioba' in the name of the directory to your NetID.
+     (Your NetID is three letters followed by four or five digits.
+      The directory name will now be something like 'hmwk_02_abc1234'.)
+  4. Look in that directory for the skeletons.
+  5. Remove '_skeleton' from the names of the skeleton files.
+  6. Change the header lines in the files hmwk_02.cc / .cs / .java / .py.
+     Put your name on line 1, your NetID number on line 2, and the
+     date on line 3.
+  7. Remove '_skeleton' from the class names in the Java and C# files.
+  8. Write your solution using hmwk_02.java by changing the contents
+     of the processToken() function to use the regular expression
+     support of the language to classify the proposed token into one
+     of the five token classes or 'does not match'.
+  9. Generate the output exactly as it is shown in the sample output
+     below.  This makes it easy to check if you are getting the correct
+     answers.
+ 10. Write your second solution in one of C#, C++, or Python.
+ 11. Run your two solutions with the provided 'inputdata_02.text'
+     as the input file.
+ 12. Observe the following output (it should be the same no matter
+     which languages you picked):
+
+processing tokens from inputdata_02.txt ...
+>ABCD< does not match.
+>abcd< does not match.
+>0123< does not match.
+>_+Q< does not match.
+>9_A< does not match.
+>123< does not match.
+>0< does not match.
+>0dABC< does not match.
+>-0D1< does not match.
+>0xDEFG< does not match.
+>0X< does not match.
+>+0x1< does not match.
+>0dABC< does not match.
+>0XXX< does not match.
+>12.abc< does not match.
+>9ab.12< does not match.
+>+5.6< does not match.
+>9< does not match.
+>E9< does not match.
+>.e< does not match.
+>9ab.12< does not match.
+>+5.6< does not match.
+>_< matches ID
+>bA_99< matches ID
+>Z_q_3< matches ID
+>aBCxyz< matches ID
+>XyzABC< matches ID
+>0d1< matches INT
+>0D0< matches INT
+>0D123456< matches INT
+>0d0000< matches INT
+>0D999< matches INT
+>0xdead< matches HEXINT
+>0XBeEf< matches HEXINT
+>0xABC< matches HEXINT
+>0x0< matches HEXINT
+>0X999< matches HEXINT
+>0.0< matches FP
+>00.00< matches FP
+>1.2345< matches FP
+>1.000< matches FP
+>12345.9< matches FP
+>0.< matches EFP
+>.09< matches EFP
+>1e1< matches EFP
+>.0e-4< matches EFP
+>3.14E+0< matches EFP
+
+#----------------------------------------------------------------------
+Submission:
+
+Make a zipfile of your 'hmwk_02_xxxnnnnn' directory and submit it on
+Blackboard as your results for this assignment.  Even if you are only
+submitting a single file, you still need to put it in a directory
+and zip that directory.
+
+Your submission will be run on another file of test data.  That file
+will have a number of possible tokens and your solution will score a
+point for each token that generates the correct message.
+
+#----------------------------------------------------------------------
+Bonus Points:
+
+After you are confident that you have correctly updated the code in
+two of the skeleton files, do another language.  So if you did Java
+and C#, try doing C++ or Python.  You'll get 1/2 point for each of the
+proposed tokens your third language attempt properly converts.
+
+If you finish a third language, do the fourth language.  You'll get
+an additional 1/2 point for each of the proposed tokens your third
+language attempt properly converts.
+
+#----------------------------------------------------------------------
+Hints:
+  1. You might need some lines of static code lines aside from
+     changing the contents of processToken().  (This will depend on
+     how you decide to do the regular expressions.)
+
+  2. These programs are not complex.  The processToken() routine in
+     each of the proposed solutions is no more than 20 lines of code,
+     possibly including some static data.  If you find yourself
+     writing lots more code than this, you're probably going down the
+     wrong path.
+
+#----------------------------------------------------------------------

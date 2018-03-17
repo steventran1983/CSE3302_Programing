@@ -28,8 +28,8 @@ def processToken(token):
         notID = notID + 1
     # Handle the IP type
     is_FP = token
-    if "." in is_FP and is_FP[0] != "." and is_FP[0].isdigit() is True and int(is_FP[0]) > 0 \
-            and is_FP[len(is_ID)-1] != "." and is_FP.replace('.', '', 1).isdigit():
+    if "." in is_FP and is_FP[0] != "." and is_FP[0].isdigit() is True and is_FP[len(is_ID)-1] != "." \
+            and is_FP.replace('.', '', 1).isdigit():
             print('>%s<  matches FP' % is_FP)
     else:
         notFP = notFP + 1
@@ -39,8 +39,8 @@ def processToken(token):
 # --------------------------------------------------
 
 def main():
-    fName = sys.argv[1]
-    # fName  = "inputdata.txt"
+    # fName = sys.argv[1]
+    fName  = "inputdata.txt"
     print('processing tokens from ' + fName + ' ...')
     with open(fName, 'r') as fp:
         lines = fp.read().replace('\r', '').split('\n')
