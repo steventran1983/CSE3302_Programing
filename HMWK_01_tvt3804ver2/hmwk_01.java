@@ -12,8 +12,8 @@ public class hmwk_01 {
 
         if (token.matches("^[0-9][0-9]+$")) {
             System.out.println(">" + token + "< matches INT.");
-        } else if (token.matches("^[0-9]+[.][0-9]+$")) {
-            System.out.println(">" + token + "< matches FD.");
+        } else if (token.matches("^[0-9]+[.][0-9]*[1-9]+$")) {
+            System.out.println(">" + token + "< matches FP.");
         } else if (token.matches("^[A-Za-z_][a-zA-Z0-9_]+$")) {
             System.out.println(">" + token + "< matches ID.");
         } else {

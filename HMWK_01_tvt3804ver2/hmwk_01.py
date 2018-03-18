@@ -1,6 +1,6 @@
-# Thang , Tran
-# 1001233804
-# 2018-02-17
+# Tran, Thang
+# 1001-233-804
+# 2018-02-18
 # --------------------------------------------------
 import re
 import sys
@@ -10,12 +10,12 @@ import sys
 def processToken(token):
 
     isInt = r"^[0-9][0-9]+$"
-    isFP = r"^[0-9]+[.][0-9]+$"
+    isFP = r"^[0-9]+[.][0-9]*[1-9]+$"
     isID = r"^[A-Za-z_][a-zA-Z0-9_]+$"
     if re.match(isInt, token):
         print('>%s<  matches INT' % token)
     elif re.match(isFP, token):
-        print('>%s<  matches FD' % token)
+        print('>%s<  matches FP' % token)
     elif re.match(isID, token):
         print('>%s<  matches ID' % token)
     else:

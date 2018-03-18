@@ -11,14 +11,14 @@ public class hmwk_01
     static public void processToken(string token)
     {
         Regex isInt = new Regex(@"^[0-9][0-9]+$");
-        Regex isFP = new Regex(@"^[0-9]+[.][0-9]+$");
+        Regex isFP = new Regex(@"^[0-9]+[.][0-9]*[1-9]+$");
         Regex isID = new Regex(@"^[A-Za-z_][a-zA-Z0-9_]+$");
         if (isInt.Match(token).Success){
-            Console.WriteLine(">" + token + "< matchs INT");
+            Console.WriteLine(">" + token + "< matches INT");
         }else if (isFP.Match(token).Success){
-            Console.WriteLine(">" + token + "< matchs FP");
+            Console.WriteLine(">" + token + "< matches FP");
         }else if (isID.Match(token).Success){
-            Console.WriteLine(">" + token + "< matchs ID");
+            Console.WriteLine(">" + token + "< matches ID");
         }else{
             Console.WriteLine(">" + token + "<  Does Not Match");
         }

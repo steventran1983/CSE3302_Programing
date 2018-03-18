@@ -1,6 +1,6 @@
-// Dalio, Brian A.
-// dalioba
-// 2018-03-09
+# Tran, Thang
+# 1001-233-804
+# 2018-03-10
 
 #include <iostream>
 #include <fstream>
