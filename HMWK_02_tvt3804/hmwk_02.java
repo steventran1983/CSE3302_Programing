@@ -1,6 +1,6 @@
-# Tran, Thang
-# 1001-233-804
-# 2018-03-10
+//Tran, Thang
+//1001-233-804
+//2018-03-10
 
 import java.nio.file.Paths;
 import java.nio.file.Files;
@@ -16,11 +16,12 @@ public class hmwk_02_skeleton {
   }
 
   public static void main( String[] args ) {
-    System.out.println( "processing tokens from " + args[ 0 ] + " ..." );
+    filename = "inputdata_02.txt";
+    System.out.println( "processing tokens from " + filename + " ..." );
 
     try {
-      Files.lines( Paths.get( args[ 0 ] ) ).forEachOrdered(
-        line -> Arrays.stream( line.split( "\\s+" )  )
+      Files.lines( Paths.get( filename ).forEachOrdered(
+        line -> Arrays.stream( line.split( "\\s+" )  ))
             .forEachOrdered( token -> processToken( token ) ) );
     } catch ( java.io.IOException e ) {
       e.printStackTrace();
