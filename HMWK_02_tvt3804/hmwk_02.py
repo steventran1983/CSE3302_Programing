@@ -10,14 +10,15 @@ def processToken( token ) :
 
     isID = r"^[a-mN-Z_][n-zA-M0-9_]*$"
     isInt = r"^(0d|0D)[0-9]+$"
+    isnotINT = r"^[0-9]+$"
     isHexInt = r"^(0x|0X)[0-9a-fA-F]+$"
     isFP = r"^[0-9]+[\.][0-9]+$"
-    isEFP = r"^[0-9]+\.$ | ^\.[0-9]+$"
-
-
+    isEFP = r"^[0-9]*[eE]?[0-9]*\.?([0-9]+([eE][-+]?[0-9]+)?)?$"
 
     if re.match(isInt, token):
         print('>%s<  matches INT' % token)
+    elif re.match(isnotINT,token):
+        print('>%s<  does not match' % token)
     elif re.match(isHexInt,token):
         print('>%s<  matches HEXINT' % token)
     elif re.match(isFP, token):
