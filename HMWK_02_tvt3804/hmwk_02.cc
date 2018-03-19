@@ -8,9 +8,6 @@
 using namespace std;
 
 void processToken(string token) {
-    // Replace the following line with your code to classify
-    // the string in 'token' according to your Regular
-    // Expressions and print the appropriate message.
     regex isID("^[a-mN-Z_][n-zA-M0-9_]*$");
     regex isInt("^(0d|0D)[0-9]+$");
     regex isnotEFP("^[0-9]+$");
@@ -38,7 +35,6 @@ void processToken(string token) {
 int main(int argc, char *argv[]) {
     if (argc > 1) {
         cout << "processing tokens from " << argv[ 1 ] << " ...\n";
-
         ifstream inputFile;
         string token;
 
