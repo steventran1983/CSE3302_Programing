@@ -32,7 +32,8 @@ def processToken( token ) :
 
 #--------------------------------------------------
 def main() :
-  fName = "inputdata_02.txt"
+  c
+  #fName = "inputdata_02.txt"
   print( 'processing tokens from ' + fName + ' ...' )
 
   with open( fName, 'r' ) as fp :

@@ -6,25 +6,35 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.util.Arrays;
 
-public class hmwk_02_skeleton {
-  public static void processToken( String token ) {
-    // Replace the following line with your code to classify
-    // the string in 'token' according to your Regular
-    // Expressions and print the appropriate message.
+public class hmwk_02 {
 
-    System.out.println( ">" + token + "< is the proposed token." );
-  }
+    public static void processToken(String token) {
 
-  public static void main( String[] args ) {
-    filename = "inputdata_02.txt";
-    System.out.println( "processing tokens from " + filename + " ..." );
-
-    try {
-      Files.lines( Paths.get( filename ).forEachOrdered(
-        line -> Arrays.stream( line.split( "\\s+" )  ))
-            .forEachOrdered( token -> processToken( token ) ) );
-    } catch ( java.io.IOException e ) {
-      e.printStackTrace();
+        if (token.matches("^[a-mN-Z_][n-zA-M0-9_]*$")) {
+            System.out.println(">" + token + "< matches ID.");
+        } else if (token.matches("^(0d|0D)[0-9]+$")) {
+            System.out.println(">" + token + "< matches INT.");
+        } else if (token.matches("[0-9]+$")) {
+            System.out.println(">" + token + "< does not match.");
+        } else if (token.matches("^(0x|0X)[0-9a-fA-F]+$")) {
+            System.out.println(">" + token + "< matches HEXINT.");
+        } else if (token.matches("^[0-9]+\\.[0-9]+$")) {
+            System.out.println(">" + token + "< matches FP.");
+        } else if (token.matches("(([0-9]+\\.)|(\\.[0-9]+)|([0-9]+\\.[0-9]+)|([0-9]+))([eE][-+]?[0-9]+)?$")) {
+            System.out.println(">" + token + "< matches EFP.");
+        } else {
+            System.out.println(">" + token + "< does not match.");
+        }
     }
-  }
+    
+    public static void main(String[] args) {
+        System.out.println("processing tokens from " + args[0] + " ...");
+        try {
+            Files.lines(Paths.get(args[0])).forEachOrdered(
+                    line -> Arrays.stream(line.split("\\s+"))
+                            .forEachOrdered(token -> processToken(token)));
+        } catch (java.io.IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
